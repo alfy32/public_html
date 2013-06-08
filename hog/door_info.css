@@ -1,0 +1,179 @@
+.form {
+border-style: solid;
+border-width: 6px;
+border-color: #EEEEEC;
+//width: 870px;
+height: 600px;
+margin: auto;
+}
+
+div.left_side {
+float: left;
+width: 160px;
+}
+
+.door_image {
+float: left;
+margin: 15px;
+margin-bottom: 20px;
+}
+.door_style_label, .door_material_label, .glass_style_label, .door_design_label, .door_cost_label {
+clear: left;
+float: left;
+width: 150px;
+margin-left: 11px;
+}
+.door_style, .door_material, .glass_style, .door_design, .door_cost {
+width: 130px;
+margin-left: 11px;
+}
+
+div.main {
+float: left;
+}
+
+p.door_label {
+margin: 2px;
+}
+div.door {
+float: left;
+padding: 10px;
+}
+div.door_box {
+float: left;
+background-color: #D3D7CF;
+border-radius: 10px;
+padding: 5px;
+padding-bottom: 9px;
+}
+.door_size_label, .door_swing_label, .sill_label, .hinge_color_label {
+clear: left;
+float: left;
+text-align: right;
+width: 100px;
+margin-right: 10px;
+margin-top: 10px;
+font-size: 18px;
+}
+.door_size, .door_swing, .sill, .hinge_color {
+font-size: 17px;
+margin-top: 10px;
+width: 220px;
+}
+
+.cutsomer_details_label {
+margin: 2px;
+}
+div.customer_details {
+float: left;
+padding: 10px;
+}
+div.customer_details_box {
+float: left;
+background-color: #D3D7CF;
+border-radius: 10px;
+padding: 5px;
+}
+.door_location_label, .customer_label, .job_label, .date_label {
+clear: left;
+float: left;
+text-align: right;
+width: 110px;
+margin-right: 10px;
+margin-top: 10px;
+font-size: 18px;
+}
+.door_location, .customer, .job, .date {
+font-size: 16px;
+margin-top: 10px;
+}
+
+.jamb_label {
+margin: 2px;
+}
+div.jamb {
+clear: left;
+float: left;
+padding: 10px;
+padding-top: 0px;
+}
+div.jamb_box {
+background-color: #D3D7CF;
+border-radius: 10px;
+padding: 5px;
+width: 672px;
+height: 80px;
+}
+.jamb_material_label, .jamb_size_label {
+clear: left;
+float: left;
+text-align: right;
+width: 110px;
+margin-right: 10px;
+margin-top: 10px;
+font-size: 18px;
+}
+.jamb_material, .jamb_size {
+float: left;
+font-size: 17px;
+margin-top: 10px;
+width: 220px; 
+}
+
+.notes_label {
+margin: 2px;
+}
+div.notes {
+clear: left;
+float: left;
+padding: 10px;
+}
+textarea.notes_area {
+width: 239px;
+max-width: 239px;
+height: 154px;
+max-height: 154px;
+}
+
+.other_options_label {
+margin: 2px;
+}
+div.other_options {
+float: left;
+padding: 10px;
+}
+div.other_options_box {
+background-color: #D3D7CF;
+border-radius: 10px;
+padding: 5px;
+padding-top: 8px;
+font-size: 18px;
+}
+
+.price_label {
+margin: 2px;
+}
+div.price {
+float: left;
+padding: 10px;
+}
+div.price_box {
+background-color: #D3D7CF;
+border-radius: 10px;
+padding: 5px;
+}
+.cost_label, .percent_markup_label, .labor_cost_label, .taxes_percent_label, .total_label {
+clear: left;
+float: left;
+text-align: right;
+width: 120px;
+margin-right: 10px;
+margin-top: 3px;
+font-size: 18px;
+}
+.cost, .percent_markup, .labor_cost, .taxes_percent, .total {
+font-size: 16px;
+margin-top: 3px;
+width: 12ex;
+}
+

@@ -1,0 +1,52 @@
+.owner {
+float: right;
+font-size: 20px;
+}
+
+.name {
+font-size: 60px;
+font-weight: bold;
+}
+
+div.ingredients {
+margin-top: 2%;
+}
+
+
+div.ingredients1  {
+float: left;
+width: 50%;
+}
+div.ingredients2  {
+float: left;
+width: 50%;
+}
+
+div.seperator {
+clear: both;
+width: 100%;
+height: 10px;
+}
+
+.directions {
+display: block;
+margin-top: 5px;
+}
+
+.amount, .unit, .ingredient {
+margin-right: 5px;
+width: 150px;
+}
+
+.ingredient {
+width: 300px;
+}
+
+.directions { 
+width: 95%;
+}
+
+.amount, .unit, .ingredient, .button, .directions, .category {
+font-size: 40px;
+}
+

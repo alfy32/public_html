@@ -1,0 +1,16 @@
+
+table {
+border-collapse: collapse;
+border: 1px solid black;
+}
+td, th {
+border: 1px solid black;
+padding: 5px;
+height: 20px;
+}
+
+input.input {
+border-width: 0px;
+padding: 0px 5px;
+margin: 0px;
+}

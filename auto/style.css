@@ -1,0 +1,96 @@
+iframe{
+width: 100%;
+height: 200px;
+border: none;
+margin: 0px;
+}
+
+body {
+margin: 0px;
+background-color: blue;
+}
+
+div.main { 
+max-width: 1100px;
+margin: auto;
+background-color: blue;
+}
+header {
+background-color: darkblue;
+color: white;
+font-size: 60px;
+text-align: center;
+padding: 10px;
+margin-bottom: 10px;
+}
+div.left_col, div.right_col {
+display: inline-block;
+width: 50%;
+float:left;
+padding: 10px 0px;
+}
+div.left_col input, div.right_col input, form input, div.main input {
+width: 90%;
+margin: 5px 5%;
+padding: 20px 0px;
+border: 2px solid lightblue;
+border-radius: 20px;
+background-color: darkblue;
+font-size: 40px;
+text-align: center;
+color: white;
+}
+div.left_col input:hover, div.right_col input:hover, form input:hover, div.main  input:hover {
+background-color: blue;
+}
+div.main input.cmd {
+background-color: white;
+color: black;
+}
+h1 {
+width: 90%;
+padding: 20px 0px;
+color: white;
+text-align: center;
+margin: auto;
+margin-bottom: 5px;
+}
+div.messages {
+margin-top: 20px;
+}
+div.main h2 {
+color: white;
+width: 90%;
+margin: 5px 5%;
+}
+
+h3 {
+width: 400px;
+padding: 20px;
+background-color: blue;
+color: white;
+margin: auto;
+margin-bottom: 5px;
+}
+
+input.cmd_button {
+width: 400px;
+padding: 20px;
+background-color: blue;
+display: block;
+border: none; 
+border-radius: 10px;
+color: white;
+margin: auto;
+margin-bottom: 5px;
+}
+.pulse {
+width: 360px;
+padding: 20px;
+/background-color: blue;
+display: block; 
+border-radius: 10px;
+color: black;
+margin: auto;
+margin-bottom: 5px;
+}

@@ -1,0 +1,495 @@
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<script>
+	var solution = new Array(9);
+	var puzzle = new Array(9);
+	var original_puzzle = new Array(9);
+	
+	for(var r = 0; r < 9; r++)
+	{
+		solution[r] = new Array(9);
+		puzzle[r] = new Array(9);
+		original_puzzle[r] = new Array(9);
+		
+		for(var c = 0; c < 9; c++)
+		{
+			solution[r][c] = 0;
+			puzzle[r][c] = 0;
+			original_puzzle[r][c] = 0;
+		}
+	}
+	
+	function is_valid_row(row)
+	{
+		var check = [false, false, false, false, false, false, false, false, false, false];
+		
+		for(var i = 0; i < 9; i++)
+		{
+			//don't worry about blank spots
+			if(solution[row][i] != 0)
+			{
+				//The value has already been found in the row
+				if(check[solution[row][i]] == true)
+					return false;
+				else
+					check[solution[row][i]] = true; //mark the value as found in row
+			}
+		}
+		//if the check never failed it must be true
+		return true;
+	}
+	
+	function is_valid_col(col)
+	{
+		var check = [false, false, false, false, false, false, false, false, false, false];
+		
+		for(var i = 0; i < 9; i++)
+		{
+			//don't worry about blank spots
+			if(solution[i][col] != 0)
+			{
+				//The value has already been found in the col
+				if(check[solution[i][col]] == true)
+					return false;
+				else
+					check[solution[i][col]] = true; //mark the value as found in col
+			}
+		}
+		//if the check never failed it must be true
+		return true;
+	}
+	
+	function is_valid_square(row, col)
+	{
+		var check = [false, false, false, false, false, false, false, false, false, false];
+		
+		//finds the top left of the current square
+		var row_offset = row - row%3;
+		var col_offset = col - col%3;
+		
+		for(var r = row_offset; r < row_offset+3; r++)
+		{
+			for(var c = col_offset; c < col_offset+3; c++)
+			{
+				//don't worry about blank spots
+				if(solution[r][c] != 0)
+				{
+					if(check[solution[r][c]] == true) //the value has already been seen means fail.
+						return false;
+					else
+						check[solution[r][c]] = true; //mark the value as found in col
+				}
+			}
+		}
+		//if the check never failed it must be true
+		return true;
+	}
+	
+	function isValid(row, col)
+	{
+		var row_check = [false, false, false, false, false, false, false, false, false, false]; 
+		var col_check = [false, false, false, false, false, false, false, false, false, false]; 
+
+		for(var i = 0; i < 9; i++)
+		{
+			//check row
+			////////////////////////////////////////////////////
+
+			//don't worry about blank spots
+			if(solution[row][i] != 0)
+			{
+				
+				if(row_check[solution[row][i]] == true) //the value has already been seen
+					return false;
+				else
+					row_check[solution[row][i]] = true; //mark the value as found
+			}
+
+			//check col
+			////////////////////////////////////////////////////
+			
+			//don't worry about blank spots
+			if(solution[i][col] != 0)
+			{
+				if(col_check[solution[i][col]] == true) //the value has already been seen
+					return false;
+				else
+					col_check[solution[i][col]] = true; //mark the value as found
+			}
+		}
+
+		//check square
+		////////////////////////////////////////////////////
+		
+		var square_check = [false, false, false, false, false, false, false, false, false, false];
+
+		//finds the top left of the current square
+		var row_offset = row - row%3;
+		var col_offset = col - col%3;
+			
+		for(var r = row_offset; r < row_offset+3; r++)
+		{
+			for(var c = col_offset; c < col_offset+3; c++)
+			{
+				//don't worry about blank spots
+				if(solution[r][c] != 0)
+				{
+					if(square_check[solution[r][c]] == true) //the value has already been seen means fail.
+						return false;
+					else
+						square_check[solution[r][c]] = true; //mark the value as found in col
+				}
+			}
+		}
+
+		//if the check never failed it must be true
+		////////////////////////////////////////////////////
+
+		return true;
+	}
+	
+	function show_puzzle()
+	{
+		for(var r = 0; r < 9; r++)
+		{
+			for(var c = 0; c < 9; c++)
+			{	
+				var input = document.getElementById('solution'+r+''+c);
+				if(puzzle[r][c] != 0)
+					input.value = puzzle[r][c];
+				else
+					input.value = '';
+					
+				if(original_puzzle[r][c] != 0)
+				{
+					input.readOnly = true;
+					input.setAttribute("class","blue");
+				}
+				else
+				{
+					input.readOnly = false;
+					input.setAttribute("class","input");
+				}
+			}
+		}
+	}
+	
+	function show_solution()
+	{
+		solve(0,0);
+		
+		for(var r = 0; r < 9; r++)
+		{
+			for(var c = 0; c < 9; c++)
+			{	
+				
+				if(solution[r][c] != 0)
+					document.getElementById('solution'+r+''+c).value = solution[r][c];
+				else
+					document.getElementById('solution'+r+''+c).value = '';
+			}
+		}
+	}
+	
+	function show_original_puzzle()
+	{
+		solve(0,0);
+		
+		for(var r = 0; r < 9; r++)
+		{
+			for(var c = 0; c < 9; c++)
+			{	
+				if(original_puzzle[r][c] != 0)
+					document.getElementById('solution'+r+''+c).value = original_puzzle[r][c];
+				else
+					document.getElementById('solution'+r+''+c).value = '';
+			}
+		}
+	}
+	
+	function solve(row, col)
+	{
+		//once the col has passed the edge start the next row
+		if(col >= 9)	
+			return solve(row+1, 0);
+		
+		//if the row passes the end then it should be solved
+		if(row >= 9)
+			return true;
+			
+		//if the number is given skip it
+		if(puzzle[row][col] > 0)
+			return solve(row,col+1);
+		
+		var random = Math.floor(Math.random()*9+1);
+
+		for(var i = random; i <= 9; i++)
+		{
+			//place a test and 
+			solution[row][col] = i;
+			
+			if(isValid(row,col) && solve(row, col+1))
+				return true;
+		}
+
+		for(var i = 1; i <= random; i++)
+		{
+			//place a test and 
+			solution[row][col] = i;
+			
+			if(isValid(row,col) && solve(row, col+1))
+				return true;
+		}
+	
+		//if we get here there was a problem
+		solution[row][col] = 0;
+		return false;
+	}
+	
+	function get_numbers()
+	{
+		for(var r = 0; r < 9; r++)
+		{
+			for(var c = 0; c < 9; c++)
+			{	
+				var number;
+				
+				if(document.getElementById('solution'+r+''+c).value)
+					number = document.getElementById('solution'+r+''+c).value;
+				else
+					number = 0;
+					
+				puzzle[r][c] = number;
+				solution[r][c] = number;
+			}
+		}		
+	}
+	
+	function set_original_puzzle()
+	{
+		for(var r = 0; r < 9; r++)
+		{
+			for(var c = 0; c < 9; c++)
+			{	
+				original_puzzle[r][c] = puzzle[r][c];
+			}
+		}
+	}
+	
+	function check_puzzle()
+	{
+		get_numbers();
+		
+		for(var r = 0; r < 9; r++)
+		{
+			for(var c = 0; c < 9; c++)
+			{
+				if(puzzle[r][c] == 0)
+					return false;
+			}
+		}
+		return solve(0,0);
+	}
+	
+	function input_changed(input)
+	{
+		if(check_puzzle() == true)
+			alert("You Win!!");
+	}
+	
+	var timer;
+	timer.hrs = 0;
+	timer.min = 0;
+	timer.sec = 0;
+	
+	function timer()
+	{
+		var hrs_element = document.getElementById('hrs');
+		var min_element = document.getElementById('min');
+		var sec_element = document.getElementById('sec');
+		
+		timer.sec++;
+		
+		if(timer.sec > 60)
+		{ 
+			timer.sec = 0; 
+			timer.min++;
+		}
+		if(timer.min > 60)
+		{	
+			timer.min = 0;
+			timer.hrs++;
+		}
+		
+		hrs_element.innerHTML = timer.hrs;
+			
+		if(timer.min < 10)
+			min_element.innerHTML = '0' + timer.min;
+		else
+			min_element.innerHTML = timer.min;
+			
+		if(timer.sec < 10)
+			sec_element.innerHTML = '0' + timer.sec;
+		else
+			sec_element.innerHTML = timer.sec;
+	}
+	
+	window.setInterval(function(){timer()},1000);
+	
+	function start_timer()
+	{
+		timer.hrs = timer.min = 0
+		timer.sec = -1;
+		timer();
+	}
+	
+	var EASY = 25;
+	var MEDIUM = 20;
+	var HARD = 15;
+	
+	function level(difficulty)
+	{
+		for(var r = 0; r < 9; r++)
+		{
+			for(var c = 0; c < 9; c++)
+			{	
+				puzzle[r][c] = 0;
+				solution[r][c] = 0;
+				original_puzzle[r][c] = 0;
+			}
+		}
+		
+		solve(0,0);
+		
+		var chosen = new Array(9);
+		for(var i = 0; i < 9; i++)
+			chosen[i] = new Array(9);
+		
+		for(var i = 0;  i < difficulty; i++)
+		{
+			var random_row = Math.floor(Math.random()*9);
+			var random_col = Math.floor(Math.random()*9);
+			
+			if(chosen[random_row][random_col] || chosen[8-random_row][8-random_col])
+				i--;
+			else
+			{
+				chosen[random_row][random_col] = true;
+				chosen[8-random_row][8-random_col] = true;
+			
+				original_puzzle[random_row][random_col] = solution[random_row][random_col];
+				original_puzzle[8-random_row][8-random_col] = solution[8-random_row][8-random_col];
+			}
+		}
+	
+		for(var r = 0; r < 9; r++)
+		{
+			for(var c = 0; c < 9; c++)
+			{	
+				puzzle[r][c] = original_puzzle[r][c];
+				solution[r][c] = original_puzzle[r][c];
+			}
+		}
+		show_puzzle();
+		
+		start_timer();
+	}
+	
+	function check()
+	{
+		for(var r = 0; r < 9; r++)
+		{
+			for(var c = 0; c < 9; c++)
+			{	
+				var number;
+				
+				if(document.getElementById('solution'+r+''+c).value)
+					number = document.getElementById('solution'+r+''+c).value;
+				else
+					number = 0;
+				
+				puzzle[r][c] = number;
+				solution[r][c] = number;
+			}
+		}
+		
+		if(solve(0,0))
+			alert("good to go");
+		else
+			alert("something is not right");
+			
+		show_puzzle();
+	}
+
+	
+</script>
+
+</head>
+
+<header>
+	<p class="logo">Aldoku</p>
+</header>
+<div class="header_bottom"></div>
+<body>
+	
+	<div class="timer">
+		Timer: <span id="hrs">0</span>:<span id="min">00</span>:<span id="sec">00</span>
+		<div class="buttons_h">
+		<button class="h_button" type="button" onclick="level(EASY)">Easy</button>
+		<button class="h_button" type="button" onclick="level(MEDIUM)">Medium</button>
+		<button class="h_button" type="button" onclick="level(HARD)">Hard</button>
+		</div>
+	</div>
+	<div class="header_bottom"></div>
+	<div class="sudoku">
+	<script>
+		
+
+		document.write("<table><tbody>");
+		for(var r = 0; r < 9; r++)
+		{
+			document.write("<tr>");
+			for(var c = 0; c < 9; c++)
+			{
+				var class_string = "cell";
+				
+				var row = Math.floor(r%3)
+				var col = Math.floor(c%3);
+				if(row == 0 && col == 0)
+					class_string = "cella";
+				else if(row == 0 && col == 1)
+					class_string = "cellb";
+				else if(row == 0 && col == 2)
+					class_string = "cellc";
+				else if(row == 1 && col == 0)
+					class_string = "celld";
+				else if(row == 1 && col == 1)
+					class_string = "celle";
+				else if(row == 1 && col == 2)
+					class_string = "cellf";
+				else if(row == 2 && col == 0)
+					class_string = "cellg";
+				else if(row == 2 && col == 1)
+					class_string = "cellh";
+				else if(row == 2 && col == 2)
+					class_string = "celli";
+					
+				document.write("<td class='" + class_string + "'><input size='1' onkeyup='input_changed(this)' class='input' autocomplete='off' maxlength='1' id='solution"+r+""+c+"'></td>");
+			}
+			document.write("</tr>");
+		}
+		document.write("</tbody></table>");
+	</script>
+	
+		
+		<div class="buttons">
+		<button type="button" onclick="check()">Check</button> <br>
+		<button type="button" onclick="show_solution()">Show Solution</button>
+		<button type="button" onclick="show_puzzle()">Show Puzzle</button>
+		</div>
+	</div>
+</body>
+</html>

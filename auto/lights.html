@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head> 
+		<title>Lights</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+		<div class="main">
+			<header>Pi Automation</header>
+			<form action='page.py' method='post'>
+				<input type="submit" name="soundSystem" value="Sound System" />
+				<input type="submit" name="thermostat" value="Thermostat" />
+				<input type="submit" name="scheduler" value="Scheduler" />
+				<input type="submit" name="cmd" value="Custom Command" />
+			
+				<div class="left_col">
+					<header>Lights</header>
+					<input type="submit" name="kitchen" value="Kitchen ON" />
+					<input type="submit" name="living" value="Living ON" />
+					<input type="submit" name="family" value="Family ON" />
+					<input type="submit" name="porch" value="Porch ON" />
+					
+				</div>
+				<div class="right_col">
+					<header>Systems</header>
+					<input type="submit" name="garageDoor" value="Garage Door OPEN" />
+					<input type="submit" name="alarm" value="Alarm System ON" />
+					<input type="submit" name="sprinklers" value="Sprinklers ON" />
+					<input type="submit" name="oven" value="Oven ON" />
+				</div>
+				<div style="clear:both"></div>
+			</form>
+		</div>
+	</body>
+</html>

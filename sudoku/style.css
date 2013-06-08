@@ -1,0 +1,103 @@
+body {
+margin: 0px;
+padding: 0px;
+background: #d3d7cf;
+}
+
+header {
+background-color: #2E3436;
+height: 103px;
+color: #eeeeec;
+}
+.header_bottom {
+height: 1px;
+width:100%;
+background-color: white: 
+}
+.logo {
+display: inline;
+margin: 0px;
+height: 90px;
+padding-top: 13px;
+padding-bottom: 0px;
+padding-right: 20px;
+float: right;
+font-size: 80px;
+}
+.h_button {
+border: 0px;
+border-radius: 5px;
+background: black;
+color: white;
+}
+.h_button:hover{
+color: #d3d7cf;
+}
+.sudoku {
+margin-top: 20px;
+margin-bottom: 20px;
+margin-left: auto;
+margin-right: auto;
+width: 464px;
+}
+
+.input , .blue{
+text-align: center;
+border-collapse: collapse;
+border: 0px;
+background-color: white;
+margin: 0;
+width: 50px;
+font-size: 40px;
+}
+
+.blue {
+color: blue;
+}
+
+.timer {
+height: 27px;
+padding-left: 20px;
+background: black;
+color: #babdb6;
+}
+
+td, tr, table, tbody{
+margin: 0;
+padding: 0;
+}
+
+table{ 
+border-collapse: collapse;
+}
+
+.cella, .cellb, .cellc {
+border-top: #77D 2px solid;
+}
+.cellc, .cellf, .celli {
+border-right: #77D 2px solid;
+}
+.cella, .celld, .cellg {
+border-left: #77D 2px solid;
+}
+.cellg, .cellh, .celli {
+border-bottom: #77D 2px solid;
+}
+
+.celld, .celle, .cellf, .cellg, .cellh, .celli {
+border-top: 1px solid #DDE;
+}
+.cella, .cellb, .celld, .celle, .cellg, .cellh{
+border-right: 1px solid #DDE;
+}
+.cellb, .cellc, .celle, .cellf, .cellh, .celli {
+border-left: 1px solid #DDE;
+}
+.cella, .cellb, .cellc, .celld, .celle, .cellf {
+border-bottom: 1px solid #DDE;
+}
+
+.buttons_h {
+float:right;
+}
+

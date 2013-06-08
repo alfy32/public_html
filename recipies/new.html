@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>New Recipie</title>
+		
+		<link rel="stylesheet" type="text/css" href="new.css">
+		
+		<datalist id="amount">
+			<?PHP include 'data/amount_list.php'; ?>
+		</datalist>
+		<datalist id="unit">
+			<?PHP include 'data/unit_list.php'; ?>
+		</datalist>
+		<datalist id="ingredient">
+			<?PHP include 'data/ingredient_list.php'; ?>
+		</datalist>
+	</head>
+	
+	<body>
+
+		<form action="new.php" method="post">
+			<input type="text" class="owner" name="owner" placeholder="Recipie Owner">
+			<input type="text" class="name" name="name" placeholder="Recipie Name"> 
+			<br>
+			<input type="text" class="amount" name="amount" placeholder="Amount">
+			<input type="text" class="units" name="units" placeholder="Units">
+			<input type="text" class="ingredient" name="ingredient" placeholder="Ingredient"> 
+			<br>
+			<input type="button" class="add_ingredient" value="Add Ingredient"> 
+			<br>
+			<textarea type="text" name="directions" placeholder="Directions..." rows="10" cols="50"></textarea> 
+			<br>
+			<input type="submit">
+		</form>
+		
+	</body>
+</html>
